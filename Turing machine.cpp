@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include <tuple>
 #define STATE tm.commands
@@ -104,7 +104,8 @@ public:
 				}
 
 			}
-			throw exception("Missing instruction");
+			cerr << "Missing instruction";
+            return;
 	}
 
 	void move(int direction)
@@ -123,7 +124,8 @@ public:
 		}
 		else
 		{
-			throw exception("incorrect direction");
+			cerr << "incorrect direction";
+            return;
 		}
 	}
 	void change(char change)
@@ -143,7 +145,7 @@ public:
 int main()
 {
 
-	Tape tp("1111111");
+	Tape tp("11111111111");
 	TuringMachine tm(20, tp);
 
 	STATE[Q1]ADD_INSTRUCTION({'1', '1', RIGHT, Q2 });
@@ -247,6 +249,7 @@ int main()
   //STATE[Q3]ADD_INSTRUCTION({'9','0',LEFT,Q3});
   //STATE[Q3]ADD_INSTRUCTION({' ','1',STAY,Qz});
 
+	cout << "Initial tape: ";
 	tp.print_tape();
 	cout << "\n\n";
 	try
